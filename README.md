@@ -1,5 +1,7 @@
-# ansible_project
-This script can install linux on multiple server
+# This project automates the deployment of Linux operating systems on over 2000 servers using
+Ansible, leveraging IPMI/iDRAC for remote control and PXE boot for OS installation.
+
+
 # Linux PXE Deployment via Ansible
 
 Deploys Linux OS via PXE on 2000+ servers using IPMI/iDRAC.
