@@ -22,16 +22,13 @@ Project Structure
 - README.md: Usage documentation.
 Usage Instructions
 ------------------
-1. Update the inventory file with server and BMC information.
-2. Ensure a working PXE environment with accessible Kickstart server.
-3. Install required Ansible collections:
-$ ansible-galaxy collection install -r requirements.yml
-4. Run the playbook:
 
-$ ansible-playbook -i inventory/hosts.yml playbook.yml
-5. Review the install_results.txt file for deployment status.
-Requirements
-------------
-- PXE boot infrastructure (TFTP, DHCP, HTTP servers)
-- Ansible 2.10 or later
-- IPMI access to all servers
+## Usage
+
+1. Update `inventory/hosts.yml` with your BMC & IP details.
+2. Ensure PXE + Kickstart infrastructure is live.
+3. Run:
+   ```bash
+   ansible-playbook -i inventory/hosts.yml playbook.yml
+   ```
+4. Check `install_results.txt` for status.
