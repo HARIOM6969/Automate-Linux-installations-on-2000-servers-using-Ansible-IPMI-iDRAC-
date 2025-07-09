@@ -32,3 +32,14 @@ Usage Instructions
    ansible-playbook -i inventory/hosts.yml playbook.yml
    ```
 4. Check `install_results.txt` for status.
+
+
+
+## Requirements
+
+- PXE infra (TFTP + DHCP + HTTP for kickstart)
+- Ansible >= 2.10
+- IPMI access enabled on all BMCs
+
+
+
