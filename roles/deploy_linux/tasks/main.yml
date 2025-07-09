@@ -1,0 +1,31 @@
+- name: Set PXE as first boot device via IPMI
+  community.general.ipmi_power:
+    user: "{{ bmc_user }}"
+    password: "{{ bmc_password }}"
+    host: "{{ bmc_ip }}"
+    bootdev: pxe
+    persistent: yes
+    state: off
+  delegate_to: localhost
+
+- name: Power cycle server to PXE boot
+  community.general.ipmi_power:
+    user: "{{ bmc_user }}"
+    password: "{{ bmc_password }}"
+    host: "{{ bmc_ip }}"
+    state: on
+  delegate_to: localhost
+
+- name: Wait for server to respond after PXE boot (~20m)
+  wait_for:
+    host: "{{ ansible_host }}"
+    port: 22
+    delay: 30
+    timeout: 1200
+    state: started
+  register: wait_result
+  ignore_errors: yes
+
+- name: Report status
+  set_fact:
+    install_status: "{{ 'SUCCESS' if wait_result.elapsed < 1200 else 'FAILED' }}"

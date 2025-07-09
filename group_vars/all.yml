@@ -1,0 +1,3 @@
+linux_iso_url: http://pxe-server/centos/8/BaseOS/x86_64/os/
+kickstart_server: http://pxe-server/kickstarts
+boot_device: pxe

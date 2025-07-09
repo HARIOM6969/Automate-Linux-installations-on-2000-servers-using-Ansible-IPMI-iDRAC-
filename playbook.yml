@@ -1,0 +1,17 @@
+- name: Deploy Linux via PXE and IPMI
+  hosts: servers
+  gather_facts: no
+  roles:
+    - deploy_linux
+
+- name: Save result summary
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Collect result
+      copy:
+        content: |
+          {% for host in hostvars %}
+          {{ host }} - {{ hostvars[host].install_status | default('UNKNOWN') }}
+          {% endfor %}
+        dest: ./install_results.txt

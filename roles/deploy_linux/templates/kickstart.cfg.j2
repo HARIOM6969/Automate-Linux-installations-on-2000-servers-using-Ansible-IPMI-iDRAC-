@@ -1,0 +1,19 @@
+# Kickstart template
+install
+url --url={{ linux_iso_url }}
+lang en_US.UTF-8
+keyboard us
+network --bootproto=dhcp
+rootpw redhat
+firewall --disabled
+authconfig --enableshadow --passalgo=sha512
+timezone UTC
+bootloader --location=mbr
+clearpart --all --initlabel
+autopart
+%packages
+@core
+%end
+%post
+echo "Installation complete" > /root/install_complete
+%end
